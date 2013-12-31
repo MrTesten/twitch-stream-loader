@@ -1,4 +1,4 @@
-twitch-stream-loader
+Twitch Stream Loader
 ====================
 
-Windows application that loads Twitch.tv streams in VLC media player.
+Windows application that loads Twitch.tv streams.
