@@ -120,10 +120,19 @@
   <data name="ClientId" xml:space="preserve">
     <value>q7mxslas2q54rdd8c4fttexiqajz9go</value>
   </data>
+  <data name="LivestreamerExecutable" xml:space="preserve">
+    <value>C:\\Program Files (x86)\\Livestreamer\\livestreamer.exe</value>
+  </data>
   <data name="TwitchAcceptHeader" xml:space="preserve">
     <value>application/vnd.twitchtv.v2+json</value>
   </data>
   <data name="TwitchApiUrl" xml:space="preserve">
     <value>https://api.twitch.tv/kraken</value>
+  </data>
+  <data name="TwitchChannelPlaceholder" xml:space="preserve">
+    <value>{CHANNEL}</value>
+  </data>
+  <data name="TwitchChatUrl" xml:space="preserve">
+    <value>http://twitch.tv/chat/embed?channel={CHANNEL}&amp;amp;popout_chat=true</value>
   </data>
 </root>

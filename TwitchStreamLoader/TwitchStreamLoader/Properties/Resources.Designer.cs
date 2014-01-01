@@ -70,6 +70,15 @@ namespace TwitchStreamLoader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to C:\\Program Files (x86)\\Livestreamer\\livestreamer.exe.
+        /// </summary>
+        internal static string LivestreamerExecutable {
+            get {
+                return ResourceManager.GetString("LivestreamerExecutable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to application/vnd.twitchtv.v2+json.
         /// </summary>
         internal static string TwitchAcceptHeader {
@@ -84,6 +93,24 @@ namespace TwitchStreamLoader.Properties {
         internal static string TwitchApiUrl {
             get {
                 return ResourceManager.GetString("TwitchApiUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {CHANNEL}.
+        /// </summary>
+        internal static string TwitchChannelPlaceholder {
+            get {
+                return ResourceManager.GetString("TwitchChannelPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://twitch.tv/chat/embed?channel={CHANNEL}&amp;amp;popout_chat=true.
+        /// </summary>
+        internal static string TwitchChatUrl {
+            get {
+                return ResourceManager.GetString("TwitchChatUrl", resourceCulture);
             }
         }
     }

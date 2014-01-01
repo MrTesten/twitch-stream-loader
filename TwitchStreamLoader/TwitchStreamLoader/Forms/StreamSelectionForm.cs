@@ -15,49 +15,44 @@ namespace TwitchStreamLoader.Forms
 
         private void launchStream_Click(object sender, EventArgs e)
         {
-            string streamName = "trumpsc";
-            string quality = "best";
-
-            if (streamNameTextBox.Text != "")
+            string channel = "trumpsc";
+            if (channelTextBox.Text != "")
             {
-                streamName = streamNameTextBox.Text;
+                channel = channelTextBox.Text;
             }
 
+            string quality = "best";
             if (qualityTextBox.Text != "")
             {
                 quality = qualityTextBox.Text;
             }
 
-            try
+            string url = null;
+            TwitchAPI twitchAPI = TwitchAPIRequester.makeRequest<TwitchAPI>(Properties.Resources.TwitchApiUrl);
+            if (twitchAPI != null && channel != "")
             {
-                ProcessStartInfo processStartInfo = new ProcessStartInfo();
-                processStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                processStartInfo.CreateNoWindow = true;
-                processStartInfo.UseShellExecute = false;
-                processStartInfo.RedirectStandardOutput = true;
-                processStartInfo.RedirectStandardError = true;
-                processStartInfo.FileName = "C:\\Program Files (x86)\\Livestreamer\\livestreamer.exe";
-                processStartInfo.Arguments = "http://www.twitch.tv/" + streamName + " " + quality;
-
-                Process livestreamerProcess = Process.Start(processStartInfo);
-                infoLabel.Text = "Launching stream: " + streamName;
+                TwitchStreamResponse response = TwitchAPIRequester.makeRequest<TwitchStreamResponse>(twitchAPI.Links.Streams + "/" + channel);
+                if (response != null && response.Stream != null && response.Stream.Channel != null && response.Stream.Channel.Url != null)
+                {
+                    url = response.Stream.Channel.Url;
+                    infoLabel.Text = response.Stream.Channel.Name;
+                    infoLabel.Text += "\n" + response.Stream.Channel.Status;
+                    infoLabel.Text += "\nViewers: " + response.Stream.Viewers;
+                }
             }
-            catch (Exception exception)
+
+            if (url != null)
             {
-                infoLabel.Text = "Error: " + exception.Message;
+                StreamLauncher.launchStream(url, quality);
             }
         }
 
-        private void testButton_Click(object sender, EventArgs e)
+        private void chatButton_Click(object sender, EventArgs e)
         {
-            TwitchAPI twitchAPI = TwitchAPIRequester.makeRequest<TwitchAPI>(Properties.Resources.TwitchApiUrl);
-            if (twitchAPI != null)
+            string channel = channelTextBox.Text;
+            if (channel != "")
             {
-                infoLabel.Text = twitchAPI.Links.Streams;
-            }
-            else
-            {
-                infoLabel.Text = "Invalid request.";
+                Process.Start(Properties.Resources.TwitchChatUrl.Replace(Properties.Resources.TwitchChannelPlaceholder, channel));
             }
         }
     }

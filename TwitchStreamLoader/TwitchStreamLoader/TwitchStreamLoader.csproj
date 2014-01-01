@@ -45,7 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\TwitchStreamResponse.cs" />
+    <Compile Include="Contracts\TwitchStream.cs" />
+    <Compile Include="Contracts\TwitchTeam.cs" />
+    <Compile Include="Contracts\TwitchChannel.cs" />
     <Compile Include="Contracts\TwitchAPI.cs" />
+    <Compile Include="StreamLauncher.cs" />
     <Compile Include="Forms\StreamSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
