@@ -29,6 +29,11 @@ namespace TwitchStreamLoader.Contracts
 
         [DataMember(Name = "channel")]
         public TwitchChannel Channel { get; set; }
+
+        public override string ToString()
+        {
+            return Channel.Name + ": " + Viewers;
+        }
     }
 
     [DataContract]

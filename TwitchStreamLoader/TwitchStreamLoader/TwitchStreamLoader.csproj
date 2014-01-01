@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\TwitchStreamsResponse.cs" />
     <Compile Include="Contracts\TwitchStreamResponse.cs" />
     <Compile Include="Contracts\TwitchStream.cs" />
     <Compile Include="Contracts\TwitchTeam.cs" />
@@ -59,6 +60,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TwitchAPIHelper.cs" />
     <Compile Include="TwitchAPIRequester.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

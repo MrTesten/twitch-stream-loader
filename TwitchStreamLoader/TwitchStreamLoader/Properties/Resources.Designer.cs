@@ -70,6 +70,15 @@ namespace TwitchStreamLoader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to best.
+        /// </summary>
+        internal static string DefaultQuality {
+            get {
+                return ResourceManager.GetString("DefaultQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to C:\\Program Files (x86)\\Livestreamer\\livestreamer.exe.
         /// </summary>
         internal static string LivestreamerExecutable {

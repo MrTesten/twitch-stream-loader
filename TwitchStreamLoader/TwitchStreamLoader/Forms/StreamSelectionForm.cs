@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 using TwitchStreamLoader.Contracts;
 
@@ -8,50 +9,42 @@ namespace TwitchStreamLoader.Forms
 {
     public partial class StreamSelectionForm : Form
     {
+        private TwitchAPIHelper twitchAPIHelper;
         public StreamSelectionForm()
         {
             InitializeComponent();
+            twitchAPIHelper = new TwitchAPIHelper();
+
+            Collection<TwitchStream> streams = twitchAPIHelper.getStreams();
+            if (streams != null)
+            {
+                foreach (TwitchStream stream in streams)
+                {
+                    channelList.Items.Add(stream);
+                }
+                channelList.SelectedIndex = 0;
+            }
         }
 
         private void launchStream_Click(object sender, EventArgs e)
         {
-            string channel = "trumpsc";
-            if (channelTextBox.Text != "")
+            string quality = Properties.Resources.DefaultQuality;
+            TwitchStream stream = (TwitchStream) channelList.SelectedItem;
+            if (stream != null)
             {
-                channel = channelTextBox.Text;
-            }
-
-            string quality = "best";
-            if (qualityTextBox.Text != "")
-            {
-                quality = qualityTextBox.Text;
-            }
-
-            string url = null;
-            TwitchAPI twitchAPI = TwitchAPIRequester.makeRequest<TwitchAPI>(Properties.Resources.TwitchApiUrl);
-            if (twitchAPI != null && channel != "")
-            {
-                TwitchStreamResponse response = TwitchAPIRequester.makeRequest<TwitchStreamResponse>(twitchAPI.Links.Streams + "/" + channel);
-                if (response != null && response.Stream != null && response.Stream.Channel != null && response.Stream.Channel.Url != null)
-                {
-                    url = response.Stream.Channel.Url;
-                    infoLabel.Text = response.Stream.Channel.Name;
-                    infoLabel.Text += "\n" + response.Stream.Channel.Status;
-                    infoLabel.Text += "\nViewers: " + response.Stream.Viewers;
-                }
-            }
-
-            if (url != null)
-            {
-                StreamLauncher.launchStream(url, quality);
+                StreamLauncher.launchStream(stream.Channel.Url, quality);
+                infoLabel.Text = stream.Channel.Name;
+                infoLabel.Text += "\n" + stream.Channel.Status;
+                infoLabel.Text += "\nViewers: " + stream.Viewers;
             }
         }
 
         private void chatButton_Click(object sender, EventArgs e)
         {
-            string channel = channelTextBox.Text;
-            if (channel != "")
+            TwitchStream stream = (TwitchStream)channelList.SelectedItem;
+            if (stream != null)
             {
+                string channel = stream.Channel.Name;
                 Process.Start(Properties.Resources.TwitchChatUrl.Replace(Properties.Resources.TwitchChannelPlaceholder, channel));
             }
         }

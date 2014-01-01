@@ -120,6 +120,9 @@
   <data name="ClientId" xml:space="preserve">
     <value>q7mxslas2q54rdd8c4fttexiqajz9go</value>
   </data>
+  <data name="DefaultQuality" xml:space="preserve">
+    <value>best</value>
+  </data>
   <data name="LivestreamerExecutable" xml:space="preserve">
     <value>C:\\Program Files (x86)\\Livestreamer\\livestreamer.exe</value>
   </data>
