@@ -8,8 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Net;
+using System.Runtime.Serialization.Json;
 
-namespace TwitchStreamLoader
+using TwitchStreamLoader.Contracts;
+
+namespace TwitchStreamLoader.Forms
 {
     public partial class StreamSelectionForm : Form
     {
@@ -20,8 +24,8 @@ namespace TwitchStreamLoader
 
         private void launchStream_Click(object sender, EventArgs e)
         {
-            String streamName = "trumpsc";
-            String quality = "best";
+            string streamName = "trumpsc";
+            string quality = "best";
 
             if (streamNameTextBox.Text != "")
             {
@@ -50,6 +54,26 @@ namespace TwitchStreamLoader
             catch (Exception exception)
             {
                 infoLabel.Text = "Error: " + exception.Message;
+            }
+        }
+
+        private void testButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                HttpWebRequest request = WebRequest.Create(Properties.Resources.TwitchApiUrl) as HttpWebRequest;
+                request.Accept = Properties.Resources.TwitchAcceptHeader;
+                request.Headers["client_id"] = Properties.Resources.ClientId;
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                {
+                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(TwitchAPI));
+                    TwitchAPI jsonResponse = jsonSerializer.ReadObject(response.GetResponseStream()) as TwitchAPI;
+                    infoLabel.Text = jsonResponse.Links.Streams;
+                }
+            }
+            catch (Exception exception)
+            {
+                infoLabel.Text = exception.Message;
             }
         }
     }

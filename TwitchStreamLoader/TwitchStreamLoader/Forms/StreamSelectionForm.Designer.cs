@@ -1,4 +1,4 @@
-﻿namespace TwitchStreamLoader
+﻿namespace TwitchStreamLoader.Forms
 {
     partial class StreamSelectionForm
     {
@@ -32,16 +32,18 @@
             this.streamNameTextBox = new System.Windows.Forms.TextBox();
             this.infoLabel = new System.Windows.Forms.Label();
             this.qualityTextBox = new System.Windows.Forms.TextBox();
+            this.testButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // launchStream
             // 
+            this.launchStream.BackColor = System.Drawing.SystemColors.Menu;
             this.launchStream.Location = new System.Drawing.Point(197, 12);
             this.launchStream.Name = "launchStream";
             this.launchStream.Size = new System.Drawing.Size(75, 46);
             this.launchStream.TabIndex = 0;
             this.launchStream.Text = "Launch";
-            this.launchStream.UseVisualStyleBackColor = true;
+            this.launchStream.UseVisualStyleBackColor = false;
             this.launchStream.Click += new System.EventHandler(this.launchStream_Click);
             // 
             // streamNameTextBox
@@ -54,9 +56,11 @@
             // 
             // infoLabel
             // 
-            this.infoLabel.Location = new System.Drawing.Point(12, 77);
+            this.infoLabel.BackColor = System.Drawing.SystemColors.Menu;
+            this.infoLabel.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.infoLabel.Location = new System.Drawing.Point(12, 63);
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(260, 31);
+            this.infoLabel.Size = new System.Drawing.Size(260, 89);
             this.infoLabel.TabIndex = 2;
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -68,11 +72,23 @@
             this.qualityTextBox.TabIndex = 2;
             this.qualityTextBox.Text = "best";
             // 
+            // testButton
+            // 
+            this.testButton.Location = new System.Drawing.Point(12, 157);
+            this.testButton.Name = "testButton";
+            this.testButton.Size = new System.Drawing.Size(260, 23);
+            this.testButton.TabIndex = 3;
+            this.testButton.Text = "Test JSON";
+            this.testButton.UseVisualStyleBackColor = true;
+            this.testButton.Click += new System.EventHandler(this.testButton_Click);
+            // 
             // StreamSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 117);
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.ClientSize = new System.Drawing.Size(284, 192);
+            this.Controls.Add(this.testButton);
             this.Controls.Add(this.qualityTextBox);
             this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.streamNameTextBox);
@@ -90,6 +106,7 @@
         private System.Windows.Forms.TextBox streamNameTextBox;
         private System.Windows.Forms.Label infoLabel;
         private System.Windows.Forms.TextBox qualityTextBox;
+        private System.Windows.Forms.Button testButton;
     }
 }
 
