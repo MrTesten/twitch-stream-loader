@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Net;
-using System.Runtime.Serialization.Json;
 
 using TwitchStreamLoader.Contracts;
 
@@ -59,21 +50,14 @@ namespace TwitchStreamLoader.Forms
 
         private void testButton_Click(object sender, EventArgs e)
         {
-            try
+            TwitchAPI twitchAPI = TwitchAPIRequester.makeRequest<TwitchAPI>(Properties.Resources.TwitchApiUrl);
+            if (twitchAPI != null)
             {
-                HttpWebRequest request = WebRequest.Create(Properties.Resources.TwitchApiUrl) as HttpWebRequest;
-                request.Accept = Properties.Resources.TwitchAcceptHeader;
-                request.Headers["client_id"] = Properties.Resources.ClientId;
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                {
-                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(TwitchAPI));
-                    TwitchAPI jsonResponse = jsonSerializer.ReadObject(response.GetResponseStream()) as TwitchAPI;
-                    infoLabel.Text = jsonResponse.Links.Streams;
-                }
+                infoLabel.Text = twitchAPI.Links.Streams;
             }
-            catch (Exception exception)
+            else
             {
-                infoLabel.Text = exception.Message;
+                infoLabel.Text = "Invalid request.";
             }
         }
     }
