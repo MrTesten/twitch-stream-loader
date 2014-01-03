@@ -32,7 +32,7 @@ namespace TwitchStreamLoader.Contracts
 
         public override string ToString()
         {
-            return Channel.Name + ": " + Viewers;
+            return Viewers.ToString().PadLeft(6) + " - " + Channel.Name;
         }
     }
 

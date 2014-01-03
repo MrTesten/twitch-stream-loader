@@ -13,6 +13,30 @@ namespace TwitchStreamLoader.Forms
         public StreamSelectionForm()
         {
             InitializeComponent();
+        }
+
+        private void launchStream_Click(object sender, EventArgs e)
+        {
+            string quality = Properties.Resources.DefaultQuality;
+            TwitchStream stream = (TwitchStream) channelList.SelectedItem;
+            if (stream != null)
+            {
+                StreamLauncher.launchStream(stream.Channel.Url, quality);
+            }
+        }
+
+        private void chatButton_Click(object sender, EventArgs e)
+        {
+            TwitchStream stream = (TwitchStream)channelList.SelectedItem;
+            if (stream != null)
+            {
+                string channel = stream.Channel.Name;
+                Process.Start(Properties.Resources.TwitchChatUrl.Replace(Properties.Resources.TwitchChannelPlaceholder, channel));
+            }
+        }
+
+        private void StreamSelectionForm_Load(object sender, EventArgs e)
+        {
             twitchAPIHelper = new TwitchAPIHelper();
 
             Collection<TwitchStream> streams = twitchAPIHelper.getStreams();
@@ -26,26 +50,16 @@ namespace TwitchStreamLoader.Forms
             }
         }
 
-        private void launchStream_Click(object sender, EventArgs e)
-        {
-            string quality = Properties.Resources.DefaultQuality;
-            TwitchStream stream = (TwitchStream) channelList.SelectedItem;
-            if (stream != null)
-            {
-                StreamLauncher.launchStream(stream.Channel.Url, quality);
-                infoLabel.Text = stream.Channel.Name;
-                infoLabel.Text += "\n" + stream.Channel.Status;
-                infoLabel.Text += "\nViewers: " + stream.Viewers;
-            }
-        }
-
-        private void chatButton_Click(object sender, EventArgs e)
+        private void channelList_SelectedIndexChanged(object sender, EventArgs e)
         {
             TwitchStream stream = (TwitchStream)channelList.SelectedItem;
             if (stream != null)
             {
-                string channel = stream.Channel.Name;
-                Process.Start(Properties.Resources.TwitchChatUrl.Replace(Properties.Resources.TwitchChannelPlaceholder, channel));
+                channelLabel.Text = stream.Channel.Name;
+                gameLabel.Text = stream.Channel.Game;
+                titleLabel.Text = stream.Channel.Status;
+                viewerLabel.Text = stream.Viewers.ToString();
+                logoPicture.Load(stream.Channel.Logo);
             }
         }
     }
