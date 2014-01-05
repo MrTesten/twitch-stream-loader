@@ -117,44 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ClientId" xml:space="preserve">
-    <value>q7mxslas2q54rdd8c4fttexiqajz9go</value>
-  </data>
-  <data name="TwitchAcceptHeader" xml:space="preserve">
-    <value>application/vnd.twitchtv.v2+json</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="TempChannelsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\TempChannelsButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TwitchApiUrl" xml:space="preserve">
-    <value>https://api.twitch.tv/kraken</value>
-  </data>
-  <data name="TempOptionsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\TempOptionsButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DefaultQuality" xml:space="preserve">
-    <value>best</value>
-  </data>
-  <data name="TwitchChatUrl" xml:space="preserve">
-    <value>http://twitch.tv/chat/embed?channel={CHANNEL}&amp;amp;popout_chat=true</value>
-  </data>
-  <data name="TempFavoritesButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\TempFavoritesButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TempSearchButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\TempSearchButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TempGamesButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\TempGamesButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TwitchChannelPlaceholder" xml:space="preserve">
-    <value>{CHANNEL}</value>
-  </data>
-  <data name="LivestreamerExecutable" xml:space="preserve">
-    <value>C:\\Program Files (x86)\\Livestreamer\\livestreamer.exe</value>
-  </data>
-  <data name="TempRefreshButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\TempRefreshButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

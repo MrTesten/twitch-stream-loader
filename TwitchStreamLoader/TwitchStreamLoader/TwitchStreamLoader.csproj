@@ -32,6 +32,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MetroFramework">
+      <HintPath>..\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design">
+      <HintPath>..\packages\MetroFramework.Design.1.2.0.3\lib\net40\MetroFramework.Design.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts">
+      <HintPath>..\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -57,6 +67,12 @@
     <Compile Include="Forms\ChannelListForm.Designer.cs">
       <DependentUpon>ChannelListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MetroTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MetroTestForm.Designer.cs">
+      <DependentUpon>MetroTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StreamLauncher.cs" />
     <Compile Include="Forms\StreamSelectionForm.cs">
       <SubType>Form</SubType>
@@ -71,6 +87,9 @@
     <EmbeddedResource Include="Forms\ChannelListForm.resx">
       <DependentUpon>ChannelListForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MetroTestForm.resx">
+      <DependentUpon>MetroTestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -84,6 +103,7 @@
     <EmbeddedResource Include="Forms\StreamSelectionForm.resx">
       <DependentUpon>StreamSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -96,6 +116,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MetroFramework.txt" />
+    <None Include="Pictures\TempRefreshButton.png" />
+    <None Include="Pictures\TempOptionsButton.png" />
+    <None Include="Pictures\TempSearchButton.png" />
+    <None Include="Pictures\TempFavoritesButton.png" />
+    <None Include="Pictures\TempChannelsButton.png" />
+    <None Include="Pictures\TempGamesButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

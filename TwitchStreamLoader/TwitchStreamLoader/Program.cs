@@ -16,7 +16,8 @@ namespace TwitchStreamLoader
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.StreamSelectionForm());
+            //Application.Run(new Forms.StreamSelectionForm());
+            Application.Run(new Forms.MetroTestForm());
         }
     }
 }
