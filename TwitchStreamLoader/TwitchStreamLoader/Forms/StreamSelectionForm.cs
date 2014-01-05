@@ -59,7 +59,11 @@ namespace TwitchStreamLoader.Forms
                 gameLabel.Text = stream.Channel.Game;
                 titleLabel.Text = stream.Channel.Status;
                 viewerLabel.Text = stream.Viewers.ToString();
-                logoPicture.Load(stream.Channel.Logo);
+                
+                if (stream.Channel.Logo != null)
+                {
+                    logoPicture.Load(stream.Channel.Logo);
+                }
             }
         }
     }

@@ -51,6 +51,12 @@
     <Compile Include="Contracts\TwitchTeam.cs" />
     <Compile Include="Contracts\TwitchChannel.cs" />
     <Compile Include="Contracts\TwitchAPI.cs" />
+    <Compile Include="Forms\ChannelListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChannelListForm.Designer.cs">
+      <DependentUpon>ChannelListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StreamLauncher.cs" />
     <Compile Include="Forms\StreamSelectionForm.cs">
       <SubType>Form</SubType>
@@ -62,6 +68,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TwitchAPIHelper.cs" />
     <Compile Include="TwitchAPIRequester.cs" />
+    <EmbeddedResource Include="Forms\ChannelListForm.resx">
+      <DependentUpon>ChannelListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
