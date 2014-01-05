@@ -36,6 +36,7 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.viewerLabel = new System.Windows.Forms.Label();
             this.gameLabel = new System.Windows.Forms.Label();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,12 +121,25 @@
             this.gameLabel.Size = new System.Drawing.Size(267, 20);
             this.gameLabel.TabIndex = 9;
             // 
+            // webBrowser
+            // 
+            this.webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser.Location = new System.Drawing.Point(12, 170);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.ScrollBarsEnabled = false;
+            this.webBrowser.Size = new System.Drawing.Size(536, 355);
+            this.webBrowser.TabIndex = 10;
+            // 
             // StreamSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(367, 157);
+            this.ClientSize = new System.Drawing.Size(560, 537);
+            this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.gameLabel);
             this.Controls.Add(this.viewerLabel);
             this.Controls.Add(this.titleLabel);
@@ -152,6 +166,7 @@
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label viewerLabel;
         private System.Windows.Forms.Label gameLabel;
+        private System.Windows.Forms.WebBrowser webBrowser;
     }
 }
 

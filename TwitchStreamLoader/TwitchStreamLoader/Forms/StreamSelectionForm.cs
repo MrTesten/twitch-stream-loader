@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Collections.ObjectModel;
 
 using TwitchStreamLoader.Contracts;
+using System.Security.Policy;
 
 namespace TwitchStreamLoader.Forms
 {
@@ -64,6 +65,7 @@ namespace TwitchStreamLoader.Forms
                 {
                     logoPicture.Load(stream.Channel.Logo);
                 }
+                webBrowser.Url = new Uri(Properties.Resources.TwitchChatUrl.Replace(Properties.Resources.TwitchChannelPlaceholder, stream.Channel.Name));
             }
         }
     }
