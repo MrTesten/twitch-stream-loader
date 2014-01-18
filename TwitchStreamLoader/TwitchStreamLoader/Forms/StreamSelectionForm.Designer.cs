@@ -36,14 +36,14 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.viewerLabel = new System.Windows.Forms.Label();
             this.gameLabel = new System.Windows.Forms.Label();
-            this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.gameList = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // launchStream
             // 
             this.launchStream.BackColor = System.Drawing.SystemColors.Menu;
-            this.launchStream.Location = new System.Drawing.Point(200, 10);
+            this.launchStream.Location = new System.Drawing.Point(390, 10);
             this.launchStream.Name = "launchStream";
             this.launchStream.Size = new System.Drawing.Size(75, 21);
             this.launchStream.TabIndex = 0;
@@ -53,7 +53,7 @@
             // 
             // chatButton
             // 
-            this.chatButton.Location = new System.Drawing.Point(285, 10);
+            this.chatButton.Location = new System.Drawing.Point(390, 40);
             this.chatButton.Name = "chatButton";
             this.chatButton.Size = new System.Drawing.Size(75, 21);
             this.chatButton.TabIndex = 4;
@@ -75,7 +75,7 @@
             // channelList
             // 
             this.channelList.FormattingEnabled = true;
-            this.channelList.Location = new System.Drawing.Point(10, 10);
+            this.channelList.Location = new System.Drawing.Point(200, 10);
             this.channelList.Name = "channelList";
             this.channelList.Size = new System.Drawing.Size(180, 21);
             this.channelList.TabIndex = 5;
@@ -121,25 +121,22 @@
             this.gameLabel.Size = new System.Drawing.Size(267, 20);
             this.gameLabel.TabIndex = 9;
             // 
-            // webBrowser
+            // gameList
             // 
-            this.webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser.Location = new System.Drawing.Point(12, 170);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.ScrollBarsEnabled = false;
-            this.webBrowser.Size = new System.Drawing.Size(536, 355);
-            this.webBrowser.TabIndex = 10;
+            this.gameList.FormattingEnabled = true;
+            this.gameList.Location = new System.Drawing.Point(10, 10);
+            this.gameList.Name = "gameList";
+            this.gameList.Size = new System.Drawing.Size(180, 21);
+            this.gameList.TabIndex = 11;
+            this.gameList.SelectedIndexChanged += new System.EventHandler(this.gameList_SelectedIndexChanged);
             // 
             // StreamSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(560, 537);
-            this.Controls.Add(this.webBrowser);
+            this.ClientSize = new System.Drawing.Size(474, 161);
+            this.Controls.Add(this.gameList);
             this.Controls.Add(this.gameLabel);
             this.Controls.Add(this.viewerLabel);
             this.Controls.Add(this.titleLabel);
@@ -166,7 +163,7 @@
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label viewerLabel;
         private System.Windows.Forms.Label gameLabel;
-        private System.Windows.Forms.WebBrowser webBrowser;
+        private System.Windows.Forms.ComboBox gameList;
     }
 }
 

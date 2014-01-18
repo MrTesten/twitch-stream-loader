@@ -40,15 +40,13 @@ namespace TwitchStreamLoader.Forms
         {
             twitchAPIHelper = new TwitchAPIHelper();
 
-            Collection<TwitchStream> streams = twitchAPIHelper.getStreams();
-            if (streams != null)
-            {
-                foreach (TwitchStream stream in streams)
-                {
-                    channelList.Items.Add(stream);
-                }
-                channelList.SelectedIndex = 0;
-            }
+            refreshGamesList();
+            refreshChannelList();
+        }
+
+        private void gameList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refreshChannelList();
         }
 
         private void channelList_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,7 +63,52 @@ namespace TwitchStreamLoader.Forms
                 {
                     logoPicture.Load(stream.Channel.Logo);
                 }
-                webBrowser.Url = new Uri(Properties.Resources.TwitchChatUrl.Replace(Properties.Resources.TwitchChannelPlaceholder, stream.Channel.Name));
+            }
+        }
+
+        private void refreshGamesList()
+        {
+            gameList.Items.Clear();
+            gameList.Items.Add(Properties.Resources.AllGamesString);
+
+            Collection<TwitchTopGame> topGames = twitchAPIHelper.getTopGames();
+            if (topGames != null)
+            {
+                foreach (TwitchTopGame topGame in topGames)
+                {
+                    gameList.Items.Add(topGame.Game.Name);
+                }
+                gameList.SelectedIndex = 0;
+            }
+        }
+
+        private void refreshChannelList()
+        {
+            channelList.Items.Clear();
+
+            string game = Properties.Resources.AllGamesString;
+            if (gameList.Items[gameList.SelectedIndex] != null)
+            {
+                game = gameList.Items[gameList.SelectedIndex].ToString();
+            }
+
+            Collection<TwitchStream> streams = null;
+            if (game != Properties.Resources.AllGamesString)
+            {
+                streams = twitchAPIHelper.getStreams(game);
+            }
+            else
+            {
+                streams = twitchAPIHelper.getStreams();
+            }
+            
+            if (streams != null)
+            {
+                foreach (TwitchStream stream in streams)
+                {
+                    channelList.Items.Add(stream);
+                }
+                channelList.SelectedIndex = 0;
             }
         }
     }

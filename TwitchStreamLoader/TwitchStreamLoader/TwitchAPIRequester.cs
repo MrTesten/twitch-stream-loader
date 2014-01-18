@@ -12,7 +12,7 @@ namespace TwitchStreamLoader
         {
         }
 
-        public static T makeRequest<T>(string url)
+        public static T requestObject<T>(string url)
         {
             T result = default(T);
             try
@@ -34,7 +34,7 @@ namespace TwitchStreamLoader
             return result;
         }
 
-        public static string makeRequest(string url)
+        public static string requestJson(string url)
         {
             string result = "";
             try

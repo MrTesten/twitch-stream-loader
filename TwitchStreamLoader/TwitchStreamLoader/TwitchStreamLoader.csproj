@@ -55,6 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\TwitchTopGame.cs" />
+    <Compile Include="Contracts\TwitchTopGamesResponse.cs" />
+    <Compile Include="Contracts\TwitchArt.cs" />
+    <Compile Include="Contracts\TwitchGame.cs" />
     <Compile Include="Contracts\TwitchStreamsResponse.cs" />
     <Compile Include="Contracts\TwitchStreamResponse.cs" />
     <Compile Include="Contracts\TwitchStream.cs" />

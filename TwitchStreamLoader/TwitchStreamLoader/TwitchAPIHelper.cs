@@ -11,25 +11,27 @@ namespace TwitchStreamLoader
     public class TwitchAPIHelper
     {
         private TwitchAPI twitchAPI;
-        private string searchURL;
-        private string streamsURL;
+        private string topGamesUrl;
+        private string searchUrl;
+        private string streamsUrl;
 
         public TwitchAPIHelper()
         {
-            twitchAPI = TwitchAPIRequester.makeRequest<TwitchAPI>(Properties.Resources.TwitchApiUrl);
+            twitchAPI = TwitchAPIRequester.requestObject<TwitchAPI>(Properties.Resources.TwitchApiUrl);
             if (twitchAPI != null && twitchAPI.Links != null)
             {
-                searchURL = twitchAPI.Links.Search;
-                streamsURL = twitchAPI.Links.Streams;
+                searchUrl = twitchAPI.Links.Search;
+                streamsUrl = twitchAPI.Links.Streams;
+                topGamesUrl = Properties.Resources.TwitchApiUrl + Properties.Resources.TwitchTopGamesUrl;
             }
         }
 
         public TwitchStream getStream(string channel)
         {
             TwitchStream stream = null;
-            if (streamsURL != null)
+            if (streamsUrl != null)
             {
-                TwitchStreamResponse response = TwitchAPIRequester.makeRequest<TwitchStreamResponse>(streamsURL + "/" + channel);
+                TwitchStreamResponse response = TwitchAPIRequester.requestObject<TwitchStreamResponse>(streamsUrl + "/" + channel);
                 stream = response.Stream;
             }
 
@@ -39,13 +41,38 @@ namespace TwitchStreamLoader
         public Collection<TwitchStream> getStreams()
         {
             Collection<TwitchStream> streams = null;
-            if (streamsURL != null)
+            if (streamsUrl != null)
             {
-                TwitchStreamsResponse response = TwitchAPIRequester.makeRequest<TwitchStreamsResponse>(streamsURL);
+                TwitchStreamsResponse response = TwitchAPIRequester.requestObject<TwitchStreamsResponse>(streamsUrl);
                 streams = response.Streams;
             }
 
             return streams;
+        }
+
+        public Collection<TwitchStream> getStreams(string game)
+        {
+            string gameSearchParameter = "?game=" + game.Replace(' ', '+');
+            Collection<TwitchStream> streams = null;
+            if (streamsUrl != null)
+            {
+                TwitchStreamsResponse response = TwitchAPIRequester.requestObject<TwitchStreamsResponse>(streamsUrl + gameSearchParameter);
+                streams = response.Streams;
+            }
+
+            return streams;
+        }
+
+        public Collection<TwitchTopGame> getTopGames()
+        {
+            Collection<TwitchTopGame> topGames = null;
+            if (topGamesUrl != null)
+            {
+                TwitchTopGamesResponse response = TwitchAPIRequester.requestObject<TwitchTopGamesResponse>(topGamesUrl);
+                topGames = response.TopGames;
+            }
+
+            return topGames;
         }
     }
 }

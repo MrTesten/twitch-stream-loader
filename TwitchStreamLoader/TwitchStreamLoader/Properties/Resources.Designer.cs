@@ -61,6 +61,15 @@ namespace TwitchStreamLoader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to -- ALL --.
+        /// </summary>
+        internal static string AllGamesString {
+            get {
+                return ResourceManager.GetString("AllGamesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to q7mxslas2q54rdd8c4fttexiqajz9go.
         /// </summary>
         internal static string ClientId {
@@ -180,6 +189,15 @@ namespace TwitchStreamLoader.Properties {
         internal static string TwitchChatUrl {
             get {
                 return ResourceManager.GetString("TwitchChatUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /games/top.
+        /// </summary>
+        internal static string TwitchTopGamesUrl {
+            get {
+                return ResourceManager.GetString("TwitchTopGamesUrl", resourceCulture);
             }
         }
     }
