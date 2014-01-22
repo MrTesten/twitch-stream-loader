@@ -11,9 +11,9 @@ namespace TwitchStreamLoader.Contracts
 
         [DataMember(Name = "_id")]
         public long Id { get; set; }
-        
+
         [DataMember(Name = "giantbomb_id")]
-        public long GiantBombId { get; set; }
+        public long? GiantBombId { get; set; }
 
         [DataMember(Name = "box")]
         public TwitchArt Box { get; set; }

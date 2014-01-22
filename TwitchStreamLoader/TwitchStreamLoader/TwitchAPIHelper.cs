@@ -57,7 +57,10 @@ namespace TwitchStreamLoader
             if (streamsUrl != null)
             {
                 TwitchStreamsResponse response = TwitchAPIRequester.requestObject<TwitchStreamsResponse>(streamsUrl + gameSearchParameter);
-                streams = response.Streams;
+                if (response != null)
+                {
+                    streams = response.Streams;
+                }
             }
 
             return streams;
@@ -69,7 +72,10 @@ namespace TwitchStreamLoader
             if (topGamesUrl != null)
             {
                 TwitchTopGamesResponse response = TwitchAPIRequester.requestObject<TwitchTopGamesResponse>(topGamesUrl);
-                topGames = response.TopGames;
+                if (response != null)
+                {
+                    topGames = response.TopGames;
+                }
             }
 
             return topGames;

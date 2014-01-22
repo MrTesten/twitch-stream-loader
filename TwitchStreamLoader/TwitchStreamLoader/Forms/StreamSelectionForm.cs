@@ -87,7 +87,7 @@ namespace TwitchStreamLoader.Forms
             channelList.Items.Clear();
 
             string game = Properties.Resources.AllGamesString;
-            if (gameList.Items[gameList.SelectedIndex] != null)
+            if (gameList.SelectedIndex != -1 && gameList.Items[gameList.SelectedIndex] != null)
             {
                 game = gameList.Items[gameList.SelectedIndex].ToString();
             }
