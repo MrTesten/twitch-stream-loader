@@ -24,7 +24,9 @@ namespace TwitchStreamLoader
                 processStartInfo.RedirectStandardOutput = true;
                 processStartInfo.RedirectStandardError = true;
                 processStartInfo.FileName = Properties.Resources.LivestreamerExecutable;
-                processStartInfo.Arguments = url + " " + quality;
+                processStartInfo.Arguments = "--player-args \"{filename} \\-\\-qt-minimal-view \\-\\-no-video-title-show \\-\\-no-qt-name-in-title\"";
+                processStartInfo.Arguments += " " + url;
+                processStartInfo.Arguments += " " + quality;
 
                 Process livestreamerProcess = Process.Start(processStartInfo);
             }
