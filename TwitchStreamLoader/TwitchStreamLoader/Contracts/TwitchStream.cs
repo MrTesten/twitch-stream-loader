@@ -1,11 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 
-namespace TwitchStreamLoader.Contracts
-{
+namespace TwitchStreamLoader.Contracts {
     [DataContract]
-    public class TwitchStream
-    {
+    public class TwitchStream {
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
@@ -30,15 +28,13 @@ namespace TwitchStreamLoader.Contracts
         [DataMember(Name = "channel")]
         public TwitchChannel Channel { get; set; }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             return Viewers.ToString().PadLeft(6) + " - " + Channel.Name;
         }
     }
 
     [DataContract]
-    public class TwitchStreamLinks
-    {
+    public class TwitchStreamLinks {
         [DataMember(Name = "self")]
         public string Self { get; set; }
     }

@@ -4,51 +4,38 @@ using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
 
-namespace TwitchStreamLoader
-{
-    public sealed class TwitchAPIRequester
-    {
-        private TwitchAPIRequester()
-        {
+namespace TwitchStreamLoader {
+    public sealed class TwitchAPIRequester {
+        private TwitchAPIRequester() {
         }
 
-        public static T requestObject<T>(string url)
-        {
+        public static T requestObject<T>(string url) {
             T result = default(T);
-            try
-            {
+            try {
                 HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
                 request.Accept = Properties.Resources.TwitchAcceptHeader;
                 request.Headers["client_id"] = Properties.Resources.ClientId;
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                {
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
                     DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(T));
-                    result = (T)jsonSerializer.ReadObject(response.GetResponseStream());
+                    result = (T) jsonSerializer.ReadObject(response.GetResponseStream());
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch (Exception exception) {
                 Console.WriteLine("Invalid Request: " + exception.Message);
             }
 
             return result;
         }
 
-        public static string requestJson(string url)
-        {
+        public static string requestJson(string url) {
             string result = "";
-            try
-            {
+            try {
                 HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
                 request.Accept = Properties.Resources.TwitchAcceptHeader;
                 request.Headers["client_id"] = Properties.Resources.ClientId;
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                {
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
                     result = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch (Exception exception) {
                 Console.WriteLine("Invalid Request: " + exception.Message);
             }
 

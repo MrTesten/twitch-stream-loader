@@ -5,18 +5,13 @@ using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Diagnostics;
 
-namespace TwitchStreamLoader
-{
-    public sealed class StreamLauncher
-    {
-        private StreamLauncher()
-        {
+namespace TwitchStreamLoader {
+    public sealed class StreamLauncher {
+        private StreamLauncher() {
         }
 
-        public static void launchStream(string url, string quality)
-        {
-            try
-            {
+        public static void launchStream(string url, string quality) {
+            try {
                 ProcessStartInfo processStartInfo = new ProcessStartInfo();
                 processStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 processStartInfo.CreateNoWindow = true;
@@ -29,9 +24,7 @@ namespace TwitchStreamLoader
                 processStartInfo.Arguments += " " + quality;
 
                 Process livestreamerProcess = Process.Start(processStartInfo);
-            }
-            catch (Exception exception)
-            {
+            } catch (Exception exception) {
                 Console.WriteLine("Caught exception: " + exception.Message);
             }
         }

@@ -1,10 +1,8 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TwitchStreamLoader.Contracts
-{
+namespace TwitchStreamLoader.Contracts {
     [DataContract]
-    public class TwitchArt
-    {
+    public class TwitchArt {
         [DataMember(Name = "template")]
         public string Template { get; set; }
 

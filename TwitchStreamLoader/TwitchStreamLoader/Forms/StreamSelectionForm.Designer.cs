@@ -31,7 +31,7 @@
             this.launchStream = new System.Windows.Forms.Button();
             this.chatButton = new System.Windows.Forms.Button();
             this.channelLabel = new System.Windows.Forms.Label();
-            this.channelList = new System.Windows.Forms.ComboBox();
+            this.streamList = new System.Windows.Forms.ComboBox();
             this.logoPicture = new System.Windows.Forms.PictureBox();
             this.titleLabel = new System.Windows.Forms.Label();
             this.viewerLabel = new System.Windows.Forms.Label();
@@ -72,15 +72,15 @@
             this.channelLabel.TabIndex = 2;
             this.channelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // channelList
+            // streamList
             // 
-            this.channelList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.channelList.FormattingEnabled = true;
-            this.channelList.Location = new System.Drawing.Point(200, 10);
-            this.channelList.Name = "channelList";
-            this.channelList.Size = new System.Drawing.Size(180, 21);
-            this.channelList.TabIndex = 5;
-            this.channelList.SelectedIndexChanged += new System.EventHandler(this.channelList_SelectedIndexChanged);
+            this.streamList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.streamList.FormattingEnabled = true;
+            this.streamList.Location = new System.Drawing.Point(200, 10);
+            this.streamList.Name = "streamList";
+            this.streamList.Size = new System.Drawing.Size(180, 21);
+            this.streamList.TabIndex = 5;
+            this.streamList.SelectedIndexChanged += new System.EventHandler(this.streamList_SelectedIndexChanged);
             // 
             // logoPicture
             // 
@@ -143,7 +143,7 @@
             this.Controls.Add(this.viewerLabel);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.logoPicture);
-            this.Controls.Add(this.channelList);
+            this.Controls.Add(this.streamList);
             this.Controls.Add(this.chatButton);
             this.Controls.Add(this.channelLabel);
             this.Controls.Add(this.launchStream);
@@ -160,7 +160,7 @@
         private System.Windows.Forms.Button launchStream;
         private System.Windows.Forms.Button chatButton;
         private System.Windows.Forms.Label channelLabel;
-        private System.Windows.Forms.ComboBox channelList;
+        private System.Windows.Forms.ComboBox streamList;
         private System.Windows.Forms.PictureBox logoPicture;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label viewerLabel;

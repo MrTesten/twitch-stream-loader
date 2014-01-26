@@ -13,31 +13,25 @@ using TwitchStreamLoader.Contracts;
 using System.IO;
 using System.Net;
 
-namespace TwitchStreamLoader.Forms
-{
-    public partial class ChannelListForm : Form
-    {
+namespace TwitchStreamLoader.Forms {
+    public partial class ChannelListForm : Form {
         private TwitchAPIHelper twitchAPIHelper;
-        public ChannelListForm()
-        {
+        public ChannelListForm() {
             InitializeComponent();
         }
 
-        private void ChannelListForm_Load(object sender, EventArgs e)
-        {
+        private void ChannelListForm_Load(object sender, EventArgs e) {
             twitchAPIHelper = new TwitchAPIHelper();
 
             Collection<TwitchStream> streams = twitchAPIHelper.getStreams();
-            if (streams != null)
-            {
+            if (streams != null) {
                 channelList.View = View.LargeIcon;
                 channelList.LargeImageList = channelImages;
                 channelImages.ImageSize = new Size(160, 100);
 
-                foreach (TwitchStream stream in streams)
-                {
+                foreach (TwitchStream stream in streams) {
                     channelImages.Images.Add(Image.FromStream(new MemoryStream(new WebClient().DownloadData(stream.Preview))));
-                    
+
                     ListViewItem listItem = new ListViewItem();
                     listItem.ImageIndex = channelImages.Images.Count - 1;
                     listItem.Text = stream.ToString();

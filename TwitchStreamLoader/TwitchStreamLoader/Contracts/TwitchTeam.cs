@@ -1,11 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 
-namespace TwitchStreamLoader.Contracts
-{
+namespace TwitchStreamLoader.Contracts {
     [DataContract]
-    public class TwitchTeam
-    {
+    public class TwitchTeam {
         [DataMember(Name = "info")]
         public string Info { get; set; }
 
@@ -37,8 +35,7 @@ namespace TwitchStreamLoader.Contracts
         public string Logo { get; set; }
 
         [DataContract]
-        public class TwitchTeamLinks
-        {
+        public class TwitchTeamLinks {
             [DataMember(Name = "self")]
             public string Self { get; set; }
         }

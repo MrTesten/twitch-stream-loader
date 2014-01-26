@@ -9,12 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 
-namespace TwitchStreamLoader.Forms
-{
-    public partial class MetroTestForm : MetroForm
-    {
-        public MetroTestForm()
-        {
+namespace TwitchStreamLoader.Forms {
+    public partial class MetroTestForm : MetroForm {
+        public MetroTestForm() {
             InitializeComponent();
         }
 
@@ -22,40 +19,34 @@ namespace TwitchStreamLoader.Forms
         enum Page { Games, Channels, Favorites, Search, Options };
         Page currentPage = Page.Games;
 
-        private void pictureBoxGamesButton_Click(object sender, EventArgs e)
-        {
+        private void pictureBoxGamesButton_Click(object sender, EventArgs e) {
             currentPage = Page.Games;
             gotoPage(currentPage);
         }
 
-        private void pictureBoxChannelsButton_Click(object sender, EventArgs e)
-        {
+        private void pictureBoxChannelsButton_Click(object sender, EventArgs e) {
             currentPage = Page.Channels;
             gotoPage(currentPage);
         }
 
-        private void pictureBoxFavoritesButton_Click(object sender, EventArgs e)
-        {
+        private void pictureBoxFavoritesButton_Click(object sender, EventArgs e) {
             currentPage = Page.Favorites;
             gotoPage(currentPage);
         }
 
-        private void pictureBoxSearchButton_Click(object sender, EventArgs e)
-        {
+        private void pictureBoxSearchButton_Click(object sender, EventArgs e) {
             currentPage = Page.Search;
             gotoPage(currentPage);
         }
 
-        private void pictureBoxOptionsButton_Click(object sender, EventArgs e)
-        {
+        private void pictureBoxOptionsButton_Click(object sender, EventArgs e) {
             currentPage = Page.Options;
             gotoPage(currentPage);
         }
 
-        private void gotoPage(Page currentPage)
-        {
+        private void gotoPage(Page currentPage) {
             pictureBoxGamesButton.BackColor = pictureBoxChannelsButton.BackColor = pictureBoxFavoritesButton.BackColor = pictureBoxSearchButton.BackColor = pictureBoxOptionsButton.BackColor = Color.Transparent;
-            
+
             if (currentPage == Page.Channels)
                 pictureBoxChannelsButton.BackColor = Color.Indigo;
             else if (currentPage == Page.Favorites)
@@ -69,6 +60,6 @@ namespace TwitchStreamLoader.Forms
         }
         #endregion Page Buttons
 
-        
+
     }
 }

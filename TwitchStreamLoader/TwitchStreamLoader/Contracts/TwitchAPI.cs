@@ -1,16 +1,13 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TwitchStreamLoader.Contracts
-{
+namespace TwitchStreamLoader.Contracts {
     [DataContract]
-    public class TwitchAPI
-    {
+    public class TwitchAPI {
         [DataMember(Name = "_links")]
         public TwitchAPILinks Links { get; set; }
 
         [DataContract]
-        public class TwitchAPILinks
-        {
+        public class TwitchAPILinks {
             [DataMember(Name = "teams")]
             public string Teams { get; set; }
 

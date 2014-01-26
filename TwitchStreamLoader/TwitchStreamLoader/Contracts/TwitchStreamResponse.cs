@@ -1,10 +1,8 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TwitchStreamLoader.Contracts
-{
+namespace TwitchStreamLoader.Contracts {
     [DataContract]
-    public class TwitchStreamResponse
-    {
+    public class TwitchStreamResponse {
         [DataMember(Name = "_links")]
         public TwitchStreamResponseLinks Links { get; set; }
 
@@ -13,8 +11,7 @@ namespace TwitchStreamLoader.Contracts
     }
 
     [DataContract]
-    public class TwitchStreamResponseLinks
-    {
+    public class TwitchStreamResponseLinks {
         [DataMember(Name = "self")]
         public string Self { get; set; }
 
