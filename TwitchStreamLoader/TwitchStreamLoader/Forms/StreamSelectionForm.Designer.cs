@@ -74,6 +74,7 @@
             // 
             // channelList
             // 
+            this.channelList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.channelList.FormattingEnabled = true;
             this.channelList.Location = new System.Drawing.Point(200, 10);
             this.channelList.Name = "channelList";
@@ -123,6 +124,7 @@
             // 
             // gameList
             // 
+            this.gameList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gameList.FormattingEnabled = true;
             this.gameList.Location = new System.Drawing.Point(10, 10);
             this.gameList.Name = "gameList";
