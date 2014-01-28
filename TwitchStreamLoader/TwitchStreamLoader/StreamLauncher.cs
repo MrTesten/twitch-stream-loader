@@ -10,7 +10,8 @@ namespace TwitchStreamLoader {
         private StreamLauncher() {
         }
 
-        public static void launchStream(string url, string quality) {
+        public static Process launchStream(string url, string quality) {
+            Process streamProcess = null;
             try {
                 ProcessStartInfo processStartInfo = new ProcessStartInfo();
                 processStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -19,14 +20,16 @@ namespace TwitchStreamLoader {
                 processStartInfo.RedirectStandardOutput = true;
                 processStartInfo.RedirectStandardError = true;
                 processStartInfo.FileName = Properties.Resources.LivestreamerExecutable;
-                processStartInfo.Arguments = "--player-args \"{filename} \\-\\-qt-minimal-view \\-\\-no-video-title-show \\-\\-no-qt-name-in-title\"";
+                processStartInfo.Arguments = "--player-args \"{filename} --qt-minimal-view --no-video-title-show --no-qt-name-in-title\"";
                 processStartInfo.Arguments += " " + url;
                 processStartInfo.Arguments += " " + quality;
 
-                Process livestreamerProcess = Process.Start(processStartInfo);
+                streamProcess = Process.Start(processStartInfo);
             } catch (Exception exception) {
                 Console.WriteLine("Caught exception: " + exception.Message);
             }
+
+            return streamProcess;
         }
     }
 }

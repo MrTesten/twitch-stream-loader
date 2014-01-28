@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using TwitchStreamLoader.Contracts;
 using System.Security.Policy;
 using System.ComponentModel;
+using System.Threading;
+using System.IO;
 
 namespace TwitchStreamLoader.Forms {
     public partial class StreamSelectionForm : Form {
@@ -27,7 +29,12 @@ namespace TwitchStreamLoader.Forms {
             string quality = Properties.Resources.DefaultQuality;
             TwitchStream stream = (TwitchStream) streamList.SelectedItem;
             if (stream != null) {
-                StreamLauncher.launchStream(stream.Channel.Url, quality);
+                BackgroundWorker streamProcessWorker = new BackgroundWorker();
+                streamProcessWorker.DoWork += delegate {
+                    Process streamProcess = StreamLauncher.launchStream(stream.Channel.Url, quality);
+                    Console.WriteLine("Stream output:\n" + streamProcess.StandardOutput.ReadToEnd());
+                };
+                streamProcessWorker.RunWorkerAsync();
             }
         }
 
@@ -84,7 +91,7 @@ namespace TwitchStreamLoader.Forms {
             } else {
                 streams = twitchAPIHelper.getStreams();
             }
-
+            
             Action<Collection<TwitchStream>> action = UpdateStreamList;
             this.Invoke(action, streams);
         }
