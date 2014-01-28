@@ -46,10 +46,18 @@ namespace TwitchStreamLoader.Forms {
             }
         }
 
+        private void refreshButton_Click(object sender, EventArgs e) {
+            if (!gameBackgroundWorker.IsBusy) {
+                gameBackgroundWorker.RunWorkerAsync();
+            }
+        }
+
         private void StreamSelectionForm_Load(object sender, EventArgs e) {
             twitchAPIHelper = new TwitchAPIHelper();
 
-            gameBackgroundWorker.RunWorkerAsync();
+            if (!gameBackgroundWorker.IsBusy) {
+                gameBackgroundWorker.RunWorkerAsync();
+            }
         }
 
         private void gameList_SelectedIndexChanged(object sender, EventArgs e) {
@@ -58,7 +66,9 @@ namespace TwitchStreamLoader.Forms {
                 game = gameList.Items[gameList.SelectedIndex].ToString();
             }
 
-            streamBackgroundWorker.RunWorkerAsync(game);
+            if (!streamBackgroundWorker.IsBusy) {
+                streamBackgroundWorker.RunWorkerAsync(game);
+            }
         }
 
         private void streamList_SelectedIndexChanged(object sender, EventArgs e) {

@@ -37,6 +37,7 @@
             this.viewerLabel = new System.Windows.Forms.Label();
             this.gameLabel = new System.Windows.Forms.Label();
             this.gameList = new System.Windows.Forms.ComboBox();
+            this.refreshButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,12 +133,23 @@
             this.gameList.TabIndex = 11;
             this.gameList.SelectedIndexChanged += new System.EventHandler(this.gameList_SelectedIndexChanged);
             // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(390, 70);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(75, 21);
+            this.refreshButton.TabIndex = 12;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
             // StreamSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(474, 161);
+            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.gameList);
             this.Controls.Add(this.gameLabel);
             this.Controls.Add(this.viewerLabel);
@@ -166,6 +178,7 @@
         private System.Windows.Forms.Label viewerLabel;
         private System.Windows.Forms.Label gameLabel;
         private System.Windows.Forms.ComboBox gameList;
+        private System.Windows.Forms.Button refreshButton;
     }
 }
 
