@@ -66,5 +66,18 @@ namespace TwitchStreamLoader {
 
             return topGames;
         }
+
+        public Collection<TwitchVideo> getVideos(string channel, bool broadcasts) {
+            Collection<TwitchVideo> videos = null;
+            if (channel != null) {
+                string broadcastFlag = broadcasts ? "true" : "false";
+                TwitchVideosResponse response = TwitchAPIRequester.requestObject<TwitchVideosResponse>("https://api.twitch.tv/kraken/channels/" + channel + "/videos?broadcasts=" + broadcastFlag);
+                if (response != null) {
+                    videos = response.Videos;
+                }
+            }
+
+            return videos;
+        }
     }
 }

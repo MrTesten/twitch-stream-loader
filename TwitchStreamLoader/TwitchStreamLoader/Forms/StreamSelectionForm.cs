@@ -14,6 +14,7 @@ namespace TwitchStreamLoader.Forms {
         private TwitchAPIHelper twitchAPIHelper;
         private BackgroundWorker gameBackgroundWorker;
         private BackgroundWorker streamBackgroundWorker;
+        private BackgroundWorker videoBackgroundWorker;
 
         public StreamSelectionForm() {
             InitializeComponent();
@@ -23,11 +24,22 @@ namespace TwitchStreamLoader.Forms {
 
             streamBackgroundWorker = new BackgroundWorker();
             streamBackgroundWorker.DoWork += new DoWorkEventHandler(streamBackgroundWorker_DoWork);
+
+            videoBackgroundWorker = new BackgroundWorker();
+            videoBackgroundWorker.DoWork += new DoWorkEventHandler(videoBackgroundWorker_DoWork);
+        }
+
+        private void StreamSelectionForm_Load(object sender, EventArgs e) {
+            twitchAPIHelper = new TwitchAPIHelper();
+
+            if (!gameBackgroundWorker.IsBusy) {
+                gameBackgroundWorker.RunWorkerAsync();
+            }
         }
 
         private void launchStream_Click(object sender, EventArgs e) {
             string quality = Properties.Resources.DefaultQuality;
-            TwitchStream stream = (TwitchStream) streamList.SelectedItem;
+            TwitchStream stream = streamList.SelectedItem as TwitchStream;
             if (stream != null) {
                 BackgroundWorker streamProcessWorker = new BackgroundWorker();
                 streamProcessWorker.DoWork += delegate {
@@ -52,11 +64,16 @@ namespace TwitchStreamLoader.Forms {
             }
         }
 
-        private void StreamSelectionForm_Load(object sender, EventArgs e) {
-            twitchAPIHelper = new TwitchAPIHelper();
-
-            if (!gameBackgroundWorker.IsBusy) {
-                gameBackgroundWorker.RunWorkerAsync();
+        private void vodButton_Click(object sender, EventArgs e) {
+            string quality = Properties.Resources.DefaultQuality;
+            TwitchVideo video = videoList.SelectedItem as TwitchVideo;
+            if (video != null) {
+                BackgroundWorker videoProcessWorker = new BackgroundWorker();
+                videoProcessWorker.DoWork += delegate {
+                    Process videoProcess = StreamLauncher.launchStream(video.Url, quality);
+                    Console.WriteLine("Video output:\n" + videoProcess.StandardOutput.ReadToEnd());
+                };
+                videoProcessWorker.RunWorkerAsync();
             }
         }
 
@@ -80,7 +97,15 @@ namespace TwitchStreamLoader.Forms {
                 viewerLabel.Text = stream.Viewers.ToString();
 
                 if (stream.Channel.Logo != null) {
-                    logoPicture.Load(stream.Channel.Logo);
+                    BackgroundWorker logoWorker = new BackgroundWorker();
+                    logoWorker.DoWork += delegate {
+                        logoPicture.Load(stream.Channel.Logo);
+                    };
+                    logoWorker.RunWorkerAsync();
+                }
+
+                if (!videoBackgroundWorker.IsBusy) {
+                    videoBackgroundWorker.RunWorkerAsync(stream.Channel.Name);
                 }
             }
         }
@@ -106,6 +131,14 @@ namespace TwitchStreamLoader.Forms {
             this.Invoke(action, streams);
         }
 
+        private void videoBackgroundWorker_DoWork(object sender, DoWorkEventArgs eventArgs) {
+            string channel = eventArgs.Argument as string;
+            Collection<TwitchVideo> videos = twitchAPIHelper.getVideos(channel, true);
+
+            Action<Collection<TwitchVideo>> action = UpdateVideoList;
+            this.Invoke(action, videos);
+        }
+
         private void UpdateGamesList(Collection<TwitchTopGame> topGames) {
             gameList.Items.Clear();
             gameList.Items.Add(Properties.Resources.AllGamesString);
@@ -126,6 +159,17 @@ namespace TwitchStreamLoader.Forms {
                     streamList.Items.Add(stream);
                 }
                 streamList.SelectedIndex = 0;
+            }
+        }
+
+        private void UpdateVideoList(Collection<TwitchVideo> videos) {
+            videoList.Items.Clear();
+
+            if (videos != null) {
+                foreach (TwitchVideo video in videos) {
+                    videoList.Items.Add(video);
+                }
+                videoList.SelectedIndex = 0;
             }
         }
     }

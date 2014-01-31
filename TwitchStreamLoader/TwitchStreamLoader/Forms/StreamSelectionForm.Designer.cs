@@ -38,6 +38,9 @@
             this.gameLabel = new System.Windows.Forms.Label();
             this.gameList = new System.Windows.Forms.ComboBox();
             this.refreshButton = new System.Windows.Forms.Button();
+            this.videoList = new System.Windows.Forms.ComboBox();
+            this.vodButton = new System.Windows.Forms.Button();
+            this.vodTimeText = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,12 +146,45 @@
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
+            // videoList
+            // 
+            this.videoList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.videoList.DropDownWidth = 455;
+            this.videoList.FormattingEnabled = true;
+            this.videoList.Location = new System.Drawing.Point(10, 155);
+            this.videoList.Name = "videoList";
+            this.videoList.Size = new System.Drawing.Size(310, 21);
+            this.videoList.TabIndex = 13;
+            // 
+            // vodButton
+            // 
+            this.vodButton.BackColor = System.Drawing.SystemColors.Menu;
+            this.vodButton.Location = new System.Drawing.Point(390, 155);
+            this.vodButton.Name = "vodButton";
+            this.vodButton.Size = new System.Drawing.Size(75, 21);
+            this.vodButton.TabIndex = 14;
+            this.vodButton.Text = "Play VOD";
+            this.vodButton.UseVisualStyleBackColor = false;
+            this.vodButton.Click += new System.EventHandler(this.vodButton_Click);
+            // 
+            // vodTimeText
+            // 
+            this.vodTimeText.Location = new System.Drawing.Point(330, 156);
+            this.vodTimeText.Mask = "00:00:00";
+            this.vodTimeText.Name = "vodTimeText";
+            this.vodTimeText.Size = new System.Drawing.Size(50, 20);
+            this.vodTimeText.TabIndex = 23;
+            this.vodTimeText.Text = "000000";
+            // 
             // StreamSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(474, 161);
+            this.ClientSize = new System.Drawing.Size(474, 185);
+            this.Controls.Add(this.vodTimeText);
+            this.Controls.Add(this.vodButton);
+            this.Controls.Add(this.videoList);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.gameList);
             this.Controls.Add(this.gameLabel);
@@ -164,6 +200,7 @@
             this.Load += new System.EventHandler(this.StreamSelectionForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -179,6 +216,9 @@
         private System.Windows.Forms.Label gameLabel;
         private System.Windows.Forms.ComboBox gameList;
         private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.ComboBox videoList;
+        private System.Windows.Forms.Button vodButton;
+        private System.Windows.Forms.MaskedTextBox vodTimeText;
     }
 }
 
