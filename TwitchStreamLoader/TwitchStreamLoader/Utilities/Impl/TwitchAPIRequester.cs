@@ -4,12 +4,12 @@ using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
 
-namespace TwitchStreamLoader {
-    public sealed class TwitchAPIRequester {
-        private TwitchAPIRequester() {
+namespace TwitchStreamLoader.Utilities {
+    public class TwitchAPIRequester : APIRequester {
+        public TwitchAPIRequester() {
         }
 
-        public static T requestObject<T>(string url) {
+        public T requestObject<T>(string url) {
             T result = default(T);
             try {
                 HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
@@ -26,7 +26,7 @@ namespace TwitchStreamLoader {
             return result;
         }
 
-        public static string requestJson(string url) {
+        public string requestJson(string url) {
             string result = "";
             try {
                 HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;

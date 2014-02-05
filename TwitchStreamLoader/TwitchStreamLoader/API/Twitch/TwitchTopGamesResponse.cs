@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 
-namespace TwitchStreamLoader.Contracts {
+namespace TwitchStreamLoader.API {
     [DataContract]
     public class TwitchTopGamesResponse {
         [DataMember(Name = "total")]

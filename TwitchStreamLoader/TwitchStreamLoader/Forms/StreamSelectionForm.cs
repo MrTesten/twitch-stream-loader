@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 
-using TwitchStreamLoader.Contracts;
+using TwitchStreamLoader.API;
 using System.Security.Policy;
 using System.ComponentModel;
 using System.Threading;

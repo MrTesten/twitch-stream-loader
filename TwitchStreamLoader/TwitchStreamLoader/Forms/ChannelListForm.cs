@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
 
-using TwitchStreamLoader.Contracts;
+using TwitchStreamLoader.API;
 using System.IO;
 using System.Net;
 

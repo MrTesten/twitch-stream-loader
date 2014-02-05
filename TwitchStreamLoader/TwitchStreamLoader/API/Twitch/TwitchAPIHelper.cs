@@ -4,17 +4,19 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TwitchStreamLoader.Contracts;
+using TwitchStreamLoader.Utilities;
 
-namespace TwitchStreamLoader {
+namespace TwitchStreamLoader.API {
     public class TwitchAPIHelper {
+        private APIRequester apiRequester;
         private TwitchAPI twitchAPI;
         private string topGamesUrl;
         private string searchUrl;
         private string streamsUrl;
 
         public TwitchAPIHelper() {
-            twitchAPI = TwitchAPIRequester.requestObject<TwitchAPI>(Properties.Resources.TwitchApiUrl);
+            apiRequester = new TwitchAPIRequester();
+            twitchAPI = apiRequester.requestObject<TwitchAPI>(Properties.Resources.TwitchApiUrl);
             if (twitchAPI != null && twitchAPI.Links != null) {
                 searchUrl = twitchAPI.Links.Search;
                 streamsUrl = twitchAPI.Links.Streams;
@@ -25,7 +27,7 @@ namespace TwitchStreamLoader {
         public TwitchStream getStream(string channel) {
             TwitchStream stream = null;
             if (streamsUrl != null) {
-                TwitchStreamResponse response = TwitchAPIRequester.requestObject<TwitchStreamResponse>(streamsUrl + "/" + channel);
+                TwitchStreamResponse response = apiRequester.requestObject<TwitchStreamResponse>(streamsUrl + "/" + channel);
                 stream = response.Stream;
             }
 
@@ -35,7 +37,7 @@ namespace TwitchStreamLoader {
         public Collection<TwitchStream> getStreams() {
             Collection<TwitchStream> streams = null;
             if (streamsUrl != null) {
-                TwitchStreamsResponse response = TwitchAPIRequester.requestObject<TwitchStreamsResponse>(streamsUrl);
+                TwitchStreamsResponse response = apiRequester.requestObject<TwitchStreamsResponse>(streamsUrl);
                 streams = response.Streams;
             }
 
@@ -46,7 +48,7 @@ namespace TwitchStreamLoader {
             string gameSearchParameter = "?game=" + game.Replace(' ', '+');
             Collection<TwitchStream> streams = null;
             if (streamsUrl != null) {
-                TwitchStreamsResponse response = TwitchAPIRequester.requestObject<TwitchStreamsResponse>(streamsUrl + gameSearchParameter);
+                TwitchStreamsResponse response = apiRequester.requestObject<TwitchStreamsResponse>(streamsUrl + gameSearchParameter);
                 if (response != null) {
                     streams = response.Streams;
                 }
@@ -58,7 +60,7 @@ namespace TwitchStreamLoader {
         public Collection<TwitchTopGame> getTopGames() {
             Collection<TwitchTopGame> topGames = null;
             if (topGamesUrl != null) {
-                TwitchTopGamesResponse response = TwitchAPIRequester.requestObject<TwitchTopGamesResponse>(topGamesUrl);
+                TwitchTopGamesResponse response = apiRequester.requestObject<TwitchTopGamesResponse>(topGamesUrl);
                 if (response != null) {
                     topGames = response.TopGames;
                 }
@@ -71,7 +73,7 @@ namespace TwitchStreamLoader {
             Collection<TwitchVideo> videos = null;
             if (channel != null) {
                 string broadcastFlag = broadcasts ? "true" : "false";
-                TwitchVideosResponse response = TwitchAPIRequester.requestObject<TwitchVideosResponse>("https://api.twitch.tv/kraken/channels/" + channel + "/videos?broadcasts=" + broadcastFlag);
+                TwitchVideosResponse response = apiRequester.requestObject<TwitchVideosResponse>("https://api.twitch.tv/kraken/channels/" + channel + "/videos?broadcasts=" + broadcastFlag);
                 if (response != null) {
                     videos = response.Videos;
                 }

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TwitchStreamLoader.Contracts {
+namespace TwitchStreamLoader.API {
     [DataContract]
     public class TwitchStreamResponse {
         [DataMember(Name = "_links")]

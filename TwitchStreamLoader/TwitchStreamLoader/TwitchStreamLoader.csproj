@@ -55,18 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\TwitchVideo.cs" />
-    <Compile Include="Contracts\TwitchVideosResponse.cs" />
-    <Compile Include="Contracts\TwitchTopGame.cs" />
-    <Compile Include="Contracts\TwitchTopGamesResponse.cs" />
-    <Compile Include="Contracts\TwitchArt.cs" />
-    <Compile Include="Contracts\TwitchGame.cs" />
-    <Compile Include="Contracts\TwitchStreamsResponse.cs" />
-    <Compile Include="Contracts\TwitchStreamResponse.cs" />
-    <Compile Include="Contracts\TwitchStream.cs" />
-    <Compile Include="Contracts\TwitchTeam.cs" />
-    <Compile Include="Contracts\TwitchChannel.cs" />
-    <Compile Include="Contracts\TwitchAPI.cs" />
+    <Compile Include="API\Twitch\TwitchVideo.cs" />
+    <Compile Include="API\Twitch\TwitchVideosResponse.cs" />
+    <Compile Include="API\Twitch\TwitchTopGame.cs" />
+    <Compile Include="API\Twitch\TwitchTopGamesResponse.cs" />
+    <Compile Include="API\Twitch\TwitchArt.cs" />
+    <Compile Include="API\Twitch\TwitchGame.cs" />
+    <Compile Include="API\Twitch\TwitchStreamsResponse.cs" />
+    <Compile Include="API\Twitch\TwitchStreamResponse.cs" />
+    <Compile Include="API\Twitch\TwitchStream.cs" />
+    <Compile Include="API\Twitch\TwitchTeam.cs" />
+    <Compile Include="API\Twitch\TwitchChannel.cs" />
+    <Compile Include="API\Twitch\TwitchAPI.cs" />
     <Compile Include="Forms\ChannelListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,7 +79,8 @@
     <Compile Include="Forms\MetroTestForm.Designer.cs">
       <DependentUpon>MetroTestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="StreamLauncher.cs" />
+    <Compile Include="Utilities\APIRequester.cs" />
+    <Compile Include="Utilities\StreamLauncher.cs" />
     <Compile Include="Forms\StreamSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,8 +89,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TwitchAPIHelper.cs" />
-    <Compile Include="TwitchAPIRequester.cs" />
+    <Compile Include="API\Twitch\TwitchAPIHelper.cs" />
+    <Compile Include="Utilities\Impl\TwitchAPIRequester.cs" />
     <EmbeddedResource Include="Forms\ChannelListForm.resx">
       <DependentUpon>ChannelListForm.cs</DependentUpon>
     </EmbeddedResource>
