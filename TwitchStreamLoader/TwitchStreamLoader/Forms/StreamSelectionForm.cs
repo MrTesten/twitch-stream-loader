@@ -66,11 +66,17 @@ namespace TwitchStreamLoader.Forms {
 
         private void vodButton_Click(object sender, EventArgs e) {
             string quality = Properties.Resources.DefaultQuality;
+            string time = "000000";
+            if (vodTimeText.MaskCompleted) {
+                time = vodTimeText.Text;
+            }
+            string timeString = "?t=" + time.Substring(0, 2) + "h" + time.Substring(3, 2) + "m" + time.Substring(6, 2) + "s";
+
             TwitchVideo video = videoList.SelectedItem as TwitchVideo;
             if (video != null) {
                 BackgroundWorker videoProcessWorker = new BackgroundWorker();
                 videoProcessWorker.DoWork += delegate {
-                    Process videoProcess = StreamLauncher.launchStream(video.Url, quality);
+                    Process videoProcess = StreamLauncher.launchStream(video.Url + timeString, quality);
                     Console.WriteLine("Video output:\n" + videoProcess.StandardOutput.ReadToEnd());
                 };
                 videoProcessWorker.RunWorkerAsync();
