@@ -169,4 +169,10 @@
   <data name="Unfavorite" xml:space="preserve">
     <value>Unfavorite</value>
   </data>
+  <data name="FavoriteStreams" xml:space="preserve">
+    <value>FavoriteStreams</value>
+  </data>
+  <data name="LastGame" xml:space="preserve">
+    <value>LastGame</value>
+  </data>
 </root>

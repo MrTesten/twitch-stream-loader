@@ -97,6 +97,24 @@ namespace TwitchStreamLoader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FavoriteStreams.
+        /// </summary>
+        internal static string FavoriteStreams {
+            get {
+                return ResourceManager.GetString("FavoriteStreams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LastGame.
+        /// </summary>
+        internal static string LastGame {
+            get {
+                return ResourceManager.GetString("LastGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to C:\\Program Files (x86)\\Livestreamer\\livestreamer.exe.
         /// </summary>
         internal static string LivestreamerExecutable {

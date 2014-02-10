@@ -16,7 +16,6 @@ namespace TwitchStreamLoader.Forms {
         private BackgroundWorker gameBackgroundWorker;
         private BackgroundWorker streamBackgroundWorker;
         private BackgroundWorker videoBackgroundWorker;
-        private bool firstLoad = true;
 
         public StreamSelectionForm() {
             InitializeComponent();
@@ -68,7 +67,7 @@ namespace TwitchStreamLoader.Forms {
         }
 
         private void favoriteButton_Click(object sender, EventArgs e) {
-            StringCollection favoriteStreams = Properties.Settings.Default["FavoriteStreams"] as StringCollection;
+            StringCollection favoriteStreams = Properties.Settings.Default[Properties.Resources.FavoriteStreams] as StringCollection;
             TwitchStream selectedStream = streamList.SelectedItem as TwitchStream;
             if (favoriteStreams != null && selectedStream != null) {
                 if (favoriteButton.Text.Equals(Properties.Resources.Favorite)) {
@@ -112,7 +111,7 @@ namespace TwitchStreamLoader.Forms {
             string game = Properties.Resources.AllGamesString;
             if (gameList.SelectedIndex != -1 && gameList.Items[gameList.SelectedIndex] != null) {
                 game = gameList.Items[gameList.SelectedIndex].ToString();
-                Properties.Settings.Default["LastGame"] = game;
+                Properties.Settings.Default[Properties.Resources.LastGame] = game;
                 Properties.Settings.Default.Save();
             }
 
@@ -194,12 +193,10 @@ namespace TwitchStreamLoader.Forms {
             }
 
             int selectedGame = 0;
-            if (firstLoad) {
-                string lastLoadedGame = Properties.Settings.Default["LastGame"] as string;
-                if (lastLoadedGame != Properties.Resources.AllGamesString) {
-                    if (gameList.Items.Contains(lastLoadedGame)) {
-                        selectedGame = gameList.Items.IndexOf(lastLoadedGame);
-                    }
+            string lastLoadedGame = Properties.Settings.Default[Properties.Resources.LastGame] as string;
+            if (lastLoadedGame != null) {
+                if (gameList.Items.Contains(lastLoadedGame)) {
+                    selectedGame = gameList.Items.IndexOf(lastLoadedGame);
                 }
             }
             gameList.SelectedIndex = selectedGame;
