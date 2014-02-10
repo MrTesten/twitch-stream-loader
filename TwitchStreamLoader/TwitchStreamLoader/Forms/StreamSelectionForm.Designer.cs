@@ -41,6 +41,7 @@
             this.videoList = new System.Windows.Forms.ComboBox();
             this.vodButton = new System.Windows.Forms.Button();
             this.vodTimeText = new System.Windows.Forms.MaskedTextBox();
+            this.favoriteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,12 +177,23 @@
             this.vodTimeText.TabIndex = 23;
             this.vodTimeText.Text = "000000";
             // 
+            // favoriteButton
+            // 
+            this.favoriteButton.Location = new System.Drawing.Point(390, 100);
+            this.favoriteButton.Name = "favoriteButton";
+            this.favoriteButton.Size = new System.Drawing.Size(75, 21);
+            this.favoriteButton.TabIndex = 24;
+            this.favoriteButton.Text = "Favorite";
+            this.favoriteButton.UseVisualStyleBackColor = true;
+            this.favoriteButton.Click += new System.EventHandler(this.favoriteButton_Click);
+            // 
             // StreamSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(474, 185);
+            this.Controls.Add(this.favoriteButton);
             this.Controls.Add(this.vodTimeText);
             this.Controls.Add(this.vodButton);
             this.Controls.Add(this.videoList);
@@ -219,6 +231,7 @@
         private System.Windows.Forms.ComboBox videoList;
         private System.Windows.Forms.Button vodButton;
         private System.Windows.Forms.MaskedTextBox vodTimeText;
+        private System.Windows.Forms.Button favoriteButton;
     }
 }
 

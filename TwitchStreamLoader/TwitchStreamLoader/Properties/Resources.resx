@@ -163,4 +163,10 @@
   <data name="AllGamesString" xml:space="preserve">
     <value>-- ALL --</value>
   </data>
+  <data name="Favorite" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="Unfavorite" xml:space="preserve">
+    <value>Unfavorite</value>
+  </data>
 </root>

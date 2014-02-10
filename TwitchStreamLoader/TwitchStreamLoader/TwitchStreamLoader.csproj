@@ -79,6 +79,7 @@
     <Compile Include="Forms\MetroTestForm.Designer.cs">
       <DependentUpon>MetroTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Utilities\APIRequester.cs" />
     <Compile Include="Utilities\StreamLauncher.cs" />
     <Compile Include="Forms\StreamSelectionForm.cs">

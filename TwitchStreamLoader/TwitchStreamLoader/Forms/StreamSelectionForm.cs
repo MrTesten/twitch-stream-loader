@@ -8,6 +8,7 @@ using System.Security.Policy;
 using System.ComponentModel;
 using System.Threading;
 using System.IO;
+using System.Collections.Specialized;
 
 namespace TwitchStreamLoader.Forms {
     public partial class StreamSelectionForm : Form {
@@ -15,6 +16,7 @@ namespace TwitchStreamLoader.Forms {
         private BackgroundWorker gameBackgroundWorker;
         private BackgroundWorker streamBackgroundWorker;
         private BackgroundWorker videoBackgroundWorker;
+        private bool firstLoad = true;
 
         public StreamSelectionForm() {
             InitializeComponent();
@@ -37,6 +39,7 @@ namespace TwitchStreamLoader.Forms {
             }
         }
 
+        #region Button Click Handlers
         private void launchStream_Click(object sender, EventArgs e) {
             string quality = Properties.Resources.DefaultQuality;
             TwitchStream stream = streamList.SelectedItem as TwitchStream;
@@ -64,6 +67,26 @@ namespace TwitchStreamLoader.Forms {
             }
         }
 
+        private void favoriteButton_Click(object sender, EventArgs e) {
+            StringCollection favoriteStreams = Properties.Settings.Default["FavoriteStreams"] as StringCollection;
+            TwitchStream selectedStream = streamList.SelectedItem as TwitchStream;
+            if (favoriteStreams != null && selectedStream != null) {
+                if (favoriteButton.Text.Equals(Properties.Resources.Favorite)) {
+                    if (!favoriteStreams.Contains(selectedStream.Channel.Name)) {
+                        favoriteStreams.Add(selectedStream.Channel.Name);
+                        Properties.Settings.Default.Save();
+                        favoriteButton.Text = Properties.Resources.Unfavorite;
+                    }
+                } else {
+                    if (favoriteStreams.Contains(selectedStream.Channel.Name)) {
+                        favoriteStreams.Remove(selectedStream.Channel.Name);
+                        Properties.Settings.Default.Save();
+                        favoriteButton.Text = Properties.Resources.Favorite;
+                    }
+                }
+            }
+        }
+
         private void vodButton_Click(object sender, EventArgs e) {
             string quality = Properties.Resources.DefaultQuality;
             string time = "000000";
@@ -82,11 +105,15 @@ namespace TwitchStreamLoader.Forms {
                 videoProcessWorker.RunWorkerAsync();
             }
         }
+        #endregion
 
+        #region Combo Box Listeners
         private void gameList_SelectedIndexChanged(object sender, EventArgs e) {
             string game = Properties.Resources.AllGamesString;
             if (gameList.SelectedIndex != -1 && gameList.Items[gameList.SelectedIndex] != null) {
                 game = gameList.Items[gameList.SelectedIndex].ToString();
+                Properties.Settings.Default["LastGame"] = game;
+                Properties.Settings.Default.Save();
             }
 
             if (!streamBackgroundWorker.IsBusy) {
@@ -102,6 +129,13 @@ namespace TwitchStreamLoader.Forms {
                 titleLabel.Text = stream.Channel.Status;
                 viewerLabel.Text = stream.Viewers.ToString();
 
+                StringCollection favoriteStreams = Properties.Settings.Default["FavoriteStreams"] as StringCollection;
+                if (favoriteStreams != null && favoriteStreams.Contains(stream.Channel.Name)) {
+                    favoriteButton.Text = Properties.Resources.Unfavorite;
+                } else {
+                    favoriteButton.Text = Properties.Resources.Favorite;
+                }
+
                 if (stream.Channel.Logo != null) {
                     BackgroundWorker logoWorker = new BackgroundWorker();
                     logoWorker.DoWork += delegate {
@@ -115,7 +149,9 @@ namespace TwitchStreamLoader.Forms {
                 }
             }
         }
+        #endregion
 
+        #region Background Thread Workers
         private void gameBackgroundWorker_DoWork(object sender, DoWorkEventArgs eventArgs) {
             Collection<TwitchTopGame> topGames = twitchAPIHelper.getTopGames();
 
@@ -144,7 +180,9 @@ namespace TwitchStreamLoader.Forms {
             Action<Collection<TwitchVideo>> action = UpdateVideoList;
             this.Invoke(action, videos);
         }
+        #endregion
 
+        #region Combo Box Updaters
         private void UpdateGamesList(Collection<TwitchTopGame> topGames) {
             gameList.Items.Clear();
             gameList.Items.Add(Properties.Resources.AllGamesString);
@@ -153,8 +191,18 @@ namespace TwitchStreamLoader.Forms {
                 foreach (TwitchTopGame topGame in topGames) {
                     gameList.Items.Add(topGame.Game.Name);
                 }
-                gameList.SelectedIndex = 0;
             }
+
+            int selectedGame = 0;
+            if (firstLoad) {
+                string lastLoadedGame = Properties.Settings.Default["LastGame"] as string;
+                if (lastLoadedGame != Properties.Resources.AllGamesString) {
+                    if (gameList.Items.Contains(lastLoadedGame)) {
+                        selectedGame = gameList.Items.IndexOf(lastLoadedGame);
+                    }
+                }
+            }
+            gameList.SelectedIndex = selectedGame;
         }
 
         private void UpdateStreamList(Collection<TwitchStream> streams) {
@@ -178,5 +226,6 @@ namespace TwitchStreamLoader.Forms {
                 videoList.SelectedIndex = 0;
             }
         }
+        #endregion
     }
 }
