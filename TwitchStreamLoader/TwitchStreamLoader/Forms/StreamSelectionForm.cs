@@ -128,7 +128,7 @@ namespace TwitchStreamLoader.Forms {
                 titleLabel.Text = stream.Channel.Status;
                 viewerLabel.Text = stream.Viewers.ToString();
 
-                StringCollection favoriteStreams = Properties.Settings.Default["FavoriteStreams"] as StringCollection;
+                StringCollection favoriteStreams = Properties.Settings.Default[Properties.Resources.FavoriteStreams] as StringCollection;
                 if (favoriteStreams != null && favoriteStreams.Contains(stream.Channel.Name)) {
                     favoriteButton.Text = Properties.Resources.Unfavorite;
                 } else {
@@ -136,11 +136,8 @@ namespace TwitchStreamLoader.Forms {
                 }
 
                 if (stream.Channel.Logo != null) {
-                    BackgroundWorker logoWorker = new BackgroundWorker();
-                    logoWorker.DoWork += delegate {
-                        logoPicture.Load(stream.Channel.Logo);
-                    };
-                    logoWorker.RunWorkerAsync();
+                    logoPicture.WaitOnLoad = false;
+                    logoPicture.LoadAsync(stream.Channel.Logo);
                 }
 
                 if (!videoBackgroundWorker.IsBusy) {
@@ -162,10 +159,17 @@ namespace TwitchStreamLoader.Forms {
             string game = eventArgs.Argument as string;
 
             Collection<TwitchStream> streams = null;
-            if (game != Properties.Resources.AllGamesString) {
-                streams = twitchAPIHelper.getStreams(game);
-            } else {
+            if (game.Equals(Properties.Resources.AllGamesString)) {
                 streams = twitchAPIHelper.getStreams();
+            } else if (game.Equals(Properties.Resources.FavoriteGamesString)) {
+                StringCollection savedFavorites = Properties.Settings.Default[Properties.Resources.FavoriteStreams] as StringCollection;
+                Collection<string> favoriteStreams = new Collection<string>();
+                foreach (string stream in savedFavorites) {
+                    favoriteStreams.Add(stream);
+                }
+                streams = twitchAPIHelper.getStreams(favoriteStreams);
+            } else {
+                streams = twitchAPIHelper.getStreams(game);
             }
             
             Action<Collection<TwitchStream>> action = UpdateStreamList;
@@ -185,6 +189,7 @@ namespace TwitchStreamLoader.Forms {
         private void UpdateGamesList(Collection<TwitchTopGame> topGames) {
             gameList.Items.Clear();
             gameList.Items.Add(Properties.Resources.AllGamesString);
+            gameList.Items.Add(Properties.Resources.FavoriteGamesString);
 
             if (topGames != null) {
                 foreach (TwitchTopGame topGame in topGames) {

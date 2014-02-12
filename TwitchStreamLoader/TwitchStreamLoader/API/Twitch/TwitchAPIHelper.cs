@@ -57,6 +57,19 @@ namespace TwitchStreamLoader.API {
             return streams;
         }
 
+        public Collection<TwitchStream> getStreams(Collection<string> channels) {
+            string channelSearchParameter = "?channel=" + string.Join(",", channels.ToArray());
+            Collection<TwitchStream> streams = null;
+            if (streamsUrl != null) {
+                TwitchStreamsResponse response = apiRequester.requestObject<TwitchStreamsResponse>(streamsUrl + channelSearchParameter);
+                if (response != null) {
+                    streams = response.Streams;
+                }
+            }
+
+            return streams;
+        }
+
         public Collection<TwitchTopGame> getTopGames() {
             Collection<TwitchTopGame> topGames = null;
             if (topGamesUrl != null) {

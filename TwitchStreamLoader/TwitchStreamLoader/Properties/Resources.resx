@@ -175,4 +175,7 @@
   <data name="LastGame" xml:space="preserve">
     <value>LastGame</value>
   </data>
+  <data name="FavoriteGamesString" xml:space="preserve">
+    <value>-- FAVORITES --</value>
+  </data>
 </root>

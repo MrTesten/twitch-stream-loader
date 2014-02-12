@@ -97,6 +97,15 @@ namespace TwitchStreamLoader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to -- FAVORITES --.
+        /// </summary>
+        internal static string FavoriteGamesString {
+            get {
+                return ResourceManager.GetString("FavoriteGamesString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FavoriteStreams.
         /// </summary>
         internal static string FavoriteStreams {
