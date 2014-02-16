@@ -48,15 +48,15 @@ namespace TwitchStreamLoader.Forms {
             pictureBoxGamesButton.BackColor = pictureBoxChannelsButton.BackColor = pictureBoxFavoritesButton.BackColor = pictureBoxSearchButton.BackColor = pictureBoxOptionsButton.BackColor = Color.Transparent;
 
             if (currentPage == Page.Channels)
-                pictureBoxChannelsButton.BackColor = Color.Indigo;
+                pictureBoxChannelsButton.BackColor = Color.Black;
             else if (currentPage == Page.Favorites)
-                pictureBoxFavoritesButton.BackColor = Color.Indigo;
+                pictureBoxFavoritesButton.BackColor = Color.Black;
             else if (currentPage == Page.Search)
-                pictureBoxSearchButton.BackColor = Color.Indigo;
+                pictureBoxSearchButton.BackColor = Color.Black;
             else if (currentPage == Page.Options)
-                pictureBoxOptionsButton.BackColor = Color.Indigo;
+                pictureBoxOptionsButton.BackColor = Color.Black;
             else
-                pictureBoxGamesButton.BackColor = Color.Indigo;
+                pictureBoxGamesButton.BackColor = Color.Black;
         }
         #endregion Page Buttons
 

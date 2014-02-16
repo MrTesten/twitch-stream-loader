@@ -73,6 +73,12 @@
     <Compile Include="Forms\ChannelListForm.Designer.cs">
       <DependentUpon>ChannelListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FavoritesEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FavoritesEditorForm.Designer.cs">
+      <DependentUpon>FavoritesEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MetroTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     <Compile Include="Utilities\Impl\TwitchAPIRequester.cs" />
     <EmbeddedResource Include="Forms\ChannelListForm.resx">
       <DependentUpon>ChannelListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FavoritesEditorForm.resx">
+      <DependentUpon>FavoritesEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MetroTestForm.resx">
       <DependentUpon>MetroTestForm.cs</DependentUpon>

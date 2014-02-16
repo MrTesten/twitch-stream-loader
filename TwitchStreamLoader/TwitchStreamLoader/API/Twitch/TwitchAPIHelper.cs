@@ -58,12 +58,14 @@ namespace TwitchStreamLoader.API {
         }
 
         public Collection<TwitchStream> getStreams(Collection<string> channels) {
-            string channelSearchParameter = "?channel=" + string.Join(",", channels.ToArray());
             Collection<TwitchStream> streams = null;
-            if (streamsUrl != null) {
-                TwitchStreamsResponse response = apiRequester.requestObject<TwitchStreamsResponse>(streamsUrl + channelSearchParameter);
-                if (response != null) {
-                    streams = response.Streams;
+            if (channels != null && channels.Count > 0) {
+                string channelSearchParameter = "?channel=" + string.Join(",", channels.ToArray());
+                if (streamsUrl != null) {
+                    TwitchStreamsResponse response = apiRequester.requestObject<TwitchStreamsResponse>(streamsUrl + channelSearchParameter);
+                    if (response != null) {
+                        streams = response.Streams;
+                    }
                 }
             }
 

@@ -80,7 +80,7 @@
             // 
             this.pictureBoxOptionsButton.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxOptionsButton.Image = global::TwitchStreamLoader.Properties.Resources.TempOptionsButton;
-            this.pictureBoxOptionsButton.Location = new System.Drawing.Point(0, 325);
+            this.pictureBoxOptionsButton.Location = new System.Drawing.Point(0, 250);
             this.pictureBoxOptionsButton.Name = "pictureBoxOptionsButton";
             this.pictureBoxOptionsButton.Size = new System.Drawing.Size(50, 50);
             this.pictureBoxOptionsButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -92,7 +92,7 @@
             // 
             this.pictureBoxFavoritesButton.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxFavoritesButton.Image = global::TwitchStreamLoader.Properties.Resources.TempFavoritesButton;
-            this.pictureBoxFavoritesButton.Location = new System.Drawing.Point(0, 175);
+            this.pictureBoxFavoritesButton.Location = new System.Drawing.Point(0, 150);
             this.pictureBoxFavoritesButton.Name = "pictureBoxFavoritesButton";
             this.pictureBoxFavoritesButton.Size = new System.Drawing.Size(50, 50);
             this.pictureBoxFavoritesButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -104,7 +104,7 @@
             // 
             this.pictureBoxSearchButton.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxSearchButton.Image = global::TwitchStreamLoader.Properties.Resources.TempSearchButton;
-            this.pictureBoxSearchButton.Location = new System.Drawing.Point(0, 250);
+            this.pictureBoxSearchButton.Location = new System.Drawing.Point(0, 200);
             this.pictureBoxSearchButton.Name = "pictureBoxSearchButton";
             this.pictureBoxSearchButton.Size = new System.Drawing.Size(50, 50);
             this.pictureBoxSearchButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -126,9 +126,9 @@
             // 
             // pictureBoxGamesButton
             // 
-            this.pictureBoxGamesButton.BackColor = System.Drawing.Color.Indigo;
+            this.pictureBoxGamesButton.BackColor = System.Drawing.Color.Black;
             this.pictureBoxGamesButton.Image = global::TwitchStreamLoader.Properties.Resources.TempGamesButton;
-            this.pictureBoxGamesButton.Location = new System.Drawing.Point(0, 25);
+            this.pictureBoxGamesButton.Location = new System.Drawing.Point(0, 50);
             this.pictureBoxGamesButton.Name = "pictureBoxGamesButton";
             this.pictureBoxGamesButton.Size = new System.Drawing.Size(50, 50);
             this.pictureBoxGamesButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -145,8 +145,7 @@
             this.MaximizeBox = false;
             this.Name = "MetroTestForm";
             this.Resizable = false;
-            this.Style = MetroFramework.MetroColorStyle.Purple;
-            this.Text = "     Twitch Desktop";
+            this.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRefreshButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOptionsButton)).EndInit();

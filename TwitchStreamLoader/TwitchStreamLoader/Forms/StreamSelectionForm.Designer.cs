@@ -42,6 +42,7 @@
             this.vodButton = new System.Windows.Forms.Button();
             this.vodTimeText = new System.Windows.Forms.MaskedTextBox();
             this.favoriteButton = new System.Windows.Forms.Button();
+            this.customizeFavoritesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +59,7 @@
             // 
             // chatButton
             // 
-            this.chatButton.Location = new System.Drawing.Point(390, 40);
+            this.chatButton.Location = new System.Drawing.Point(390, 35);
             this.chatButton.Name = "chatButton";
             this.chatButton.Size = new System.Drawing.Size(75, 21);
             this.chatButton.TabIndex = 4;
@@ -139,7 +140,7 @@
             // 
             // refreshButton
             // 
-            this.refreshButton.Location = new System.Drawing.Point(390, 70);
+            this.refreshButton.Location = new System.Drawing.Point(390, 60);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 21);
             this.refreshButton.TabIndex = 12;
@@ -179,7 +180,7 @@
             // 
             // favoriteButton
             // 
-            this.favoriteButton.Location = new System.Drawing.Point(390, 100);
+            this.favoriteButton.Location = new System.Drawing.Point(390, 85);
             this.favoriteButton.Name = "favoriteButton";
             this.favoriteButton.Size = new System.Drawing.Size(75, 21);
             this.favoriteButton.TabIndex = 24;
@@ -187,12 +188,23 @@
             this.favoriteButton.UseVisualStyleBackColor = true;
             this.favoriteButton.Click += new System.EventHandler(this.favoriteButton_Click);
             // 
+            // customizeFavoritesButton
+            // 
+            this.customizeFavoritesButton.Location = new System.Drawing.Point(390, 110);
+            this.customizeFavoritesButton.Name = "customizeFavoritesButton";
+            this.customizeFavoritesButton.Size = new System.Drawing.Size(75, 21);
+            this.customizeFavoritesButton.TabIndex = 25;
+            this.customizeFavoritesButton.Text = "Customize";
+            this.customizeFavoritesButton.UseVisualStyleBackColor = true;
+            this.customizeFavoritesButton.Click += new System.EventHandler(this.customizeFavoritesButton_Click);
+            // 
             // StreamSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(474, 185);
+            this.Controls.Add(this.customizeFavoritesButton);
             this.Controls.Add(this.favoriteButton);
             this.Controls.Add(this.vodTimeText);
             this.Controls.Add(this.vodButton);
@@ -232,6 +244,7 @@
         private System.Windows.Forms.Button vodButton;
         private System.Windows.Forms.MaskedTextBox vodTimeText;
         private System.Windows.Forms.Button favoriteButton;
+        private System.Windows.Forms.Button customizeFavoritesButton;
     }
 }
 

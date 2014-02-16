@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 using TwitchStreamLoader.API;
 using System.Security.Policy;
@@ -104,6 +106,11 @@ namespace TwitchStreamLoader.Forms {
                 videoProcessWorker.RunWorkerAsync();
             }
         }
+
+        private void customizeFavoritesButton_Click(object sender, EventArgs e) {
+            new FavoritesEditorForm().Show();
+            
+        }
         #endregion
 
         #region Combo Box Listeners
@@ -162,12 +169,10 @@ namespace TwitchStreamLoader.Forms {
             if (game.Equals(Properties.Resources.AllGamesString)) {
                 streams = twitchAPIHelper.getStreams();
             } else if (game.Equals(Properties.Resources.FavoriteGamesString)) {
-                StringCollection savedFavorites = Properties.Settings.Default[Properties.Resources.FavoriteStreams] as StringCollection;
-                Collection<string> favoriteStreams = new Collection<string>();
-                foreach (string stream in savedFavorites) {
-                    favoriteStreams.Add(stream);
-                }
-                streams = twitchAPIHelper.getStreams(favoriteStreams);
+                StringCollection favorites = Properties.Settings.Default[Properties.Resources.FavoriteStreams] as StringCollection;
+                string[] favoritesArray = new string[favorites.Count];
+                favorites.CopyTo(favoritesArray, 0);
+                streams = twitchAPIHelper.getStreams(new Collection<string>(favoritesArray));
             } else {
                 streams = twitchAPIHelper.getStreams(game);
             }
@@ -197,20 +202,22 @@ namespace TwitchStreamLoader.Forms {
                 }
             }
 
-            int selectedGame = 0;
-            string lastLoadedGame = Properties.Settings.Default[Properties.Resources.LastGame] as string;
-            if (lastLoadedGame != null) {
-                if (gameList.Items.Contains(lastLoadedGame)) {
-                    selectedGame = gameList.Items.IndexOf(lastLoadedGame);
+            if (gameList.Items.Count > 0) {
+                int selectedGame = 0;
+                string lastLoadedGame = Properties.Settings.Default[Properties.Resources.LastGame] as string;
+                if (lastLoadedGame != null) {
+                    if (gameList.Items.Contains(lastLoadedGame)) {
+                        selectedGame = gameList.Items.IndexOf(lastLoadedGame);
+                    }
                 }
+                gameList.SelectedIndex = selectedGame;
             }
-            gameList.SelectedIndex = selectedGame;
         }
 
         private void UpdateStreamList(Collection<TwitchStream> streams) {
             streamList.Items.Clear();
 
-            if (streams != null) {
+            if (streams != null && streams.Count > 0) {
                 foreach (TwitchStream stream in streams) {
                     streamList.Items.Add(stream);
                 }
@@ -221,7 +228,7 @@ namespace TwitchStreamLoader.Forms {
         private void UpdateVideoList(Collection<TwitchVideo> videos) {
             videoList.Items.Clear();
 
-            if (videos != null) {
+            if (videos != null && videos.Count > 0) {
                 foreach (TwitchVideo video in videos) {
                     videoList.Items.Add(video);
                 }
